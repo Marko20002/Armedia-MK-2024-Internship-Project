@@ -1,9 +1,6 @@
-package service;
+package com.example.demo.service;
 
-import model.Person;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import repository.PersonRepository;
+import com.example.demo.model.Person;
 
 import java.util.List;
 
@@ -11,5 +8,9 @@ import java.util.List;
 public interface PersonService {
 
    Person createPerson(Person person);
+
+   public List<Person> listAll();
+
+   Person getbyID(Long ID);
 
 }

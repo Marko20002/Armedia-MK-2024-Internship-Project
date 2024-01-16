@@ -1,4 +1,4 @@
-package model;
+package com.example.demo.model;
 
 import lombok.Setter;
 
@@ -29,27 +29,43 @@ public class Person {
     public Person() {
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public String getGivenName() {
         return givenName;
+    }
+
+    public void setGivenName(String givenName) {
+        this.givenName = givenName;
     }
 
     public String getFamiluName() {
         return familuName;
     }
 
+    public void setFamiluName(String familuName) {
+        this.familuName = familuName;
+    }
+
     public Date getDateofBirth() {
         return dateofBirth;
+    }
+
+    public void setDateofBirth(Date dateofBirth) {
+        this.dateofBirth = dateofBirth;
     }
 
     public String getPlaceofBirth() {
         return placeofBirth;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getId() {
-        return id;
+    public void setPlaceofBirth(String placeofBirth) {
+        this.placeofBirth = placeofBirth;
     }
 }

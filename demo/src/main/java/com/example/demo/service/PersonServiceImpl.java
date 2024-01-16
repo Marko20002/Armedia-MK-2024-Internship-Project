@@ -1,9 +1,12 @@
-package service;
+package com.example.demo.service;
 
-import model.Person;
+import com.example.demo.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import repository.PersonRepository;
+import com.example.demo.repository.PersonRepository;
+
+import javax.persistence.Id;
+import java.util.List;
 
 @Service
 public class PersonServiceImpl implements PersonService {
@@ -17,5 +20,16 @@ public class PersonServiceImpl implements PersonService {
     public Person createPerson(Person person) {
         return personRepository.save(person);
     }
+
+    @Override
+    public List<Person> listAll() {
+        return this.personRepository.findAll();
+    }
+
+    @Override
+    public Person getbyID(Long ID) {
+        return personRepository.findById(ID).orElse(null);
+    }
+
 
 }
