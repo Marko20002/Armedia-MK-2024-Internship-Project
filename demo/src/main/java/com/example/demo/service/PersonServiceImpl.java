@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.demo.repository.PersonRepository;
 
-import javax.persistence.Id;
 import java.util.List;
 
 @Service

@@ -1,10 +1,7 @@
 package com.example.demo.model;
 
-import lombok.Setter;
-
 import javax.persistence.*;
 import java.util.Date;
-
 
 
 @Entity
@@ -13,17 +10,17 @@ public class Person {
     @GeneratedValue
     private long id;
     private String givenName;
-    private String familuName;
+    private String familyName;
     @Temporal(TemporalType.DATE)
-    private Date dateofBirth;
-    private String placeofBirth;
+    private Date dateOfBirth;
+    private String placeOfBirth;
 
-    public Person(long id, String givenName, String familuName, Date dateofBirth, String placeofBirth) {
-        this.id = id;
+
+    public Person(String givenName, String familyName, Date dateOfBirth, String placeOfBirth) {
         this.givenName = givenName;
-        this.familuName = familuName;
-        this.dateofBirth = dateofBirth;
-        this.placeofBirth = placeofBirth;
+        this.familyName = familyName;
+        this.dateOfBirth = dateOfBirth;
+        this.placeOfBirth = placeOfBirth;
     }
 
     public Person() {
@@ -45,27 +42,28 @@ public class Person {
         this.givenName = givenName;
     }
 
-    public String getFamiluName() {
-        return familuName;
+    public String getFamilyName() {
+        return familyName;
     }
 
-    public void setFamiluName(String familuName) {
-        this.familuName = familuName;
+    public void setFamilyName(String familyName) {
+        this.familyName = familyName;
     }
 
-    public Date getDateofBirth() {
-        return dateofBirth;
+    public Date getDateOfBirth() {
+        return dateOfBirth;
     }
 
-    public void setDateofBirth(Date dateofBirth) {
-        this.dateofBirth = dateofBirth;
+    public void setDateOfBirth(Date dateofBirth) {
+        this.dateOfBirth = dateofBirth;
     }
 
-    public String getPlaceofBirth() {
-        return placeofBirth;
+    public String getPlaceOfBirth() {
+        return placeOfBirth;
     }
 
-    public void setPlaceofBirth(String placeofBirth) {
-        this.placeofBirth = placeofBirth;
+    public void setPlaceOfBirth(String placeofBirth) {
+        this.placeOfBirth = placeofBirth;
     }
+
 }

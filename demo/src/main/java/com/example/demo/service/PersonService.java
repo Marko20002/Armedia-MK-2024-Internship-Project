@@ -9,8 +9,9 @@ public interface PersonService {
 
    Person createPerson(Person person);
 
-   public List<Person> listAll();
+   List<Person> listAll();
 
    Person getbyID(Long ID);
+
 
 }
