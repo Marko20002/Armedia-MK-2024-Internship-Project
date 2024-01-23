@@ -1015,7 +1015,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
     </schema>
     <schema id="294" parent="1" name="armedia_database">
       <Current>1</Current>
-      <LastIntrospectionLocalTimestamp>2024-01-17.12:13:20</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2024-01-22.15:23:48</LastIntrospectionLocalTimestamp>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <user id="295" parent="1" name="mysql.infoschema">
@@ -1037,37 +1037,211 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <Host>localhost</Host>
       <Plugin>caching_sha2_password</Plugin>
     </user>
-    <table id="299" parent="294" name="person">
+    <table id="299" parent="294" name="contact_method">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <column id="300" parent="299" name="id">
+    <table id="300" parent="294" name="hibernate_sequence">
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </table>
+    <table id="301" parent="294" name="person">
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </table>
+    <table id="302" parent="294" name="person_addresses">
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </table>
+    <table id="303" parent="294" name="person_contact_methods">
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </table>
+    <table id="304" parent="294" name="postal_address">
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </table>
+    <column id="305" parent="299" name="id">
+      <AutoIncrement>1</AutoIncrement>
       <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="301" parent="299" name="date_of_birth">
-      <DasType>date|0s</DasType>
+    <column id="306" parent="299" name="description">
+      <DasType>varchar(255)|0s</DasType>
       <Position>2</Position>
     </column>
-    <column id="302" parent="299" name="family_name">
-      <DasType>varchar(255)|0s</DasType>
+    <column id="307" parent="299" name="type">
+      <DasType>int|0s</DasType>
       <Position>3</Position>
     </column>
-    <column id="303" parent="299" name="given_name">
+    <column id="308" parent="299" name="value">
       <DasType>varchar(255)|0s</DasType>
       <Position>4</Position>
     </column>
-    <column id="304" parent="299" name="place_of_birth">
-      <DasType>varchar(255)|0s</DasType>
+    <column id="309" parent="299" name="person_id">
+      <DasType>bigint|0s</DasType>
       <Position>5</Position>
     </column>
-    <index id="305" parent="299" name="PRIMARY">
+    <foreign-key id="310" parent="299" name="FKccx18a72oup3eje8yhcsstbjt">
+      <ColNames>person_id</ColNames>
+      <RefColNames>id</RefColNames>
+      <RefTableName>person</RefTableName>
+    </foreign-key>
+    <index id="311" parent="299" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="306" parent="299" name="PRIMARY">
+    <index id="312" parent="299" name="FKccx18a72oup3eje8yhcsstbjt">
+      <ColNames>person_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="313" parent="299" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+    </key>
+    <column id="314" parent="300" name="next_val">
+      <DasType>bigint|0s</DasType>
+      <Position>1</Position>
+    </column>
+    <column id="315" parent="301" name="id">
+      <DasType>bigint|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="316" parent="301" name="date_of_birth">
+      <DasType>date|0s</DasType>
+      <Position>2</Position>
+    </column>
+    <column id="317" parent="301" name="family_name">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>3</Position>
+    </column>
+    <column id="318" parent="301" name="given_name">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>4</Position>
+    </column>
+    <column id="319" parent="301" name="place_of_birth">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>5</Position>
+    </column>
+    <index id="320" parent="301" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <key id="321" parent="301" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+    </key>
+    <column id="322" parent="302" name="person_id">
+      <DasType>bigint|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="323" parent="302" name="addresses_id">
+      <DasType>bigint|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <foreign-key id="324" parent="302" name="FKg4hhg5iayyfbeatys0g0jedu5">
+      <ColNames>person_id</ColNames>
+      <RefColNames>id</RefColNames>
+      <RefTableName>person</RefTableName>
+    </foreign-key>
+    <foreign-key id="325" parent="302" name="FKeflxhy8jfi6q79pib5jgttenm">
+      <ColNames>addresses_id</ColNames>
+      <RefColNames>id</RefColNames>
+      <RefTableName>postal_address</RefTableName>
+    </foreign-key>
+    <index id="326" parent="302" name="UK_2nco7cvdsptf08o9nahvw0q25">
+      <ColNames>addresses_id</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <index id="327" parent="302" name="FKg4hhg5iayyfbeatys0g0jedu5">
+      <ColNames>person_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="328" parent="302" name="UK_2nco7cvdsptf08o9nahvw0q25">
+      <UnderlyingIndexName>UK_2nco7cvdsptf08o9nahvw0q25</UnderlyingIndexName>
+    </key>
+    <column id="329" parent="303" name="person_id">
+      <DasType>bigint|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="330" parent="303" name="contact_methods_id">
+      <DasType>bigint|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <foreign-key id="331" parent="303" name="FKtj4ogrr7695blwwks88vbsbfg">
+      <ColNames>person_id</ColNames>
+      <RefColNames>id</RefColNames>
+      <RefTableName>person</RefTableName>
+    </foreign-key>
+    <foreign-key id="332" parent="303" name="FK4qpt7eobh36xflhsvaaop08j8">
+      <ColNames>contact_methods_id</ColNames>
+      <RefColNames>id</RefColNames>
+      <RefTableName>contact_method</RefTableName>
+    </foreign-key>
+    <index id="333" parent="303" name="UK_iga8omhipltlobe0agf4x0amh">
+      <ColNames>contact_methods_id</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <index id="334" parent="303" name="FKtj4ogrr7695blwwks88vbsbfg">
+      <ColNames>person_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="335" parent="303" name="UK_iga8omhipltlobe0agf4x0amh">
+      <UnderlyingIndexName>UK_iga8omhipltlobe0agf4x0amh</UnderlyingIndexName>
+    </key>
+    <column id="336" parent="304" name="id">
+      <AutoIncrement>1</AutoIncrement>
+      <DasType>bigint|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="337" parent="304" name="city">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>2</Position>
+    </column>
+    <column id="338" parent="304" name="country">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>3</Position>
+    </column>
+    <column id="339" parent="304" name="street_address">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>4</Position>
+    </column>
+    <column id="340" parent="304" name="zip">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>5</Position>
+    </column>
+    <column id="341" parent="304" name="person_id">
+      <DasType>bigint|0s</DasType>
+      <Position>6</Position>
+    </column>
+    <foreign-key id="342" parent="304" name="FKexx91onugk0c2qeikkg3cje81">
+      <ColNames>person_id</ColNames>
+      <RefColNames>id</RefColNames>
+      <RefTableName>person</RefTableName>
+    </foreign-key>
+    <index id="343" parent="304" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <index id="344" parent="304" name="FKexx91onugk0c2qeikkg3cje81">
+      <ColNames>person_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="345" parent="304" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
