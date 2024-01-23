@@ -14,10 +14,8 @@ public class ContactMethod {
     private String description;
     @ManyToOne
     @JsonBackReference
+    @JoinColumn(name = "person_id")
     private Person person;
-
-    public ContactMethod() {
-    }
 
     public Long getId() {
         return id;

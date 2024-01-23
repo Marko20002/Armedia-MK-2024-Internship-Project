@@ -11,6 +11,7 @@ import java.util.List;
 @Entity
 public class Person {
     @Id
+    @Column(name = "person_id")
     @GeneratedValue
     private long id;
     private String givenName;
@@ -18,8 +19,10 @@ public class Person {
     private LocalDate dateOfBirth;
     private String placeOfBirth;
 
+    @JoinColumn(name = "person_id")
     @OneToMany(cascade = CascadeType.ALL)
     private List<PostalAddress> addresses;
+    @JoinColumn(name = "person_id")
     @OneToMany(cascade = CascadeType.ALL)
     private List<ContactMethod> contactMethods;
     public List<ContactMethod> getContactMethods() {
