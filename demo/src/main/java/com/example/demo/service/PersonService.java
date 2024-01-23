@@ -13,5 +13,8 @@ public interface PersonService {
 
    Person getbyID(Long ID);
 
+   List<Person>findByEmail(String email);
+   List<Person>findByStreetAddress(String streetAddress);
+
 
 }

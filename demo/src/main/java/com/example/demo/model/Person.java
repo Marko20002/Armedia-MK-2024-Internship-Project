@@ -1,31 +1,45 @@
 package com.example.demo.model;
 
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
+import java.util.List;
 
 
 @Entity
 public class Person {
     @Id
+    @Column(name = "person_id")
     @GeneratedValue
     private long id;
     private String givenName;
     private String familyName;
-    @Temporal(TemporalType.DATE)
-    private Date dateOfBirth;
+    private LocalDate dateOfBirth;
     private String placeOfBirth;
 
-
-    public Person(String givenName, String familyName, Date dateOfBirth, String placeOfBirth) {
-        this.givenName = givenName;
-        this.familyName = familyName;
-        this.dateOfBirth = dateOfBirth;
-        this.placeOfBirth = placeOfBirth;
+    @JoinColumn(name = "person_id")
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<PostalAddress> addresses;
+    @JoinColumn(name = "person_id")
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<ContactMethod> contactMethods;
+    public List<ContactMethod> getContactMethods() {
+        return contactMethods;
     }
 
-    public Person() {
+    public void setContactMethods(List<ContactMethod> contactMethods) {
+        this.contactMethods = contactMethods;
     }
 
+
+    public List<PostalAddress> getAddresses() {
+        return addresses;
+    }
+    public void setAddresses(List<PostalAddress> addresses) {
+        this.addresses = addresses;
+    }
     public long getId() {
         return id;
     }
@@ -50,11 +64,11 @@ public class Person {
         this.familyName = familyName;
     }
 
-    public Date getDateOfBirth() {
+    public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(Date dateofBirth) {
+    public void setDateOfBirth(LocalDate dateofBirth) {
         this.dateOfBirth = dateofBirth;
     }
 
