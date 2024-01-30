@@ -5,11 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="abc15778-04e9-4b0d-b217-dc1ae9b30763" name="Changes" comment="change">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/model/ContactMethodValidator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/model/ValidContactMethod.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/6a85c270-b478-458a-8ccf-05d80d5c78df.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/6a85c270-b478-458a-8ccf-05d80d5c78df.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/demo/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/model/ContactMethod.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/model/ContactMethod.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/model/ContactMethodType.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/model/ContactMethodType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/model/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/model/Person.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/model/PostalAddress.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/model/PostalAddress.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/repository/PersonRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/repository/PersonRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/service/PersonService.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/service/PersonService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/service/PersonServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/service/PersonServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/web/PersonController.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/web/PersonController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/demo/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -21,8 +30,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -69,7 +78,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Spring Boot.DemoApplication.executor": "Run",
+    "Spring Boot.DemoApplication.executor": "Debug",
     "git-widget-placeholder": "Step5",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
@@ -81,7 +90,7 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.importing",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -94,6 +103,11 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\marko.stojanovski\Desktop\MARKO\Armedia-MK-2024-Internship-Project\demo\src\main\java\com\example\demo" />
     </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="phoneRegex" />
+    </option>
   </component>
   <component name="RunManager">
     <configuration name="DemoApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
@@ -131,7 +145,10 @@
       <workItem from="1705869616390" duration="3440000" />
       <workItem from="1705873833428" duration="1633000" />
       <workItem from="1705879586585" duration="31718000" />
-      <workItem from="1705998539861" duration="3269000" />
+      <workItem from="1705998539861" duration="6456000" />
+      <workItem from="1706474144882" duration="11335000" />
+      <workItem from="1706496630292" duration="1628000" />
+      <workItem from="1706517831249" duration="25044000" />
     </task>
     <task id="LOCAL-00001" summary="change">
       <option name="closed" value="true" />
@@ -149,7 +166,15 @@
       <option name="project" value="LOCAL" />
       <updated>1706000205192</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="change">
+      <option name="closed" value="true" />
+      <created>1706003873881</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1706003873881</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -186,10 +211,11 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <breakpoint enabled="true" type="java-exception">
-          <properties class="java.lang.NoClassDefFoundError" package="java.lang" />
-          <option name="timeStamp" value="5" />
-        </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$PROJECT_DIR$/../../../../../Program Files/OpenLogic/jdk-11.0.21.9-hotspot/lib/src.zip!/java.base/jdk/internal/loader/BuiltinClassLoader.java</url>
+          <line>630</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <pin-to-top-manager>

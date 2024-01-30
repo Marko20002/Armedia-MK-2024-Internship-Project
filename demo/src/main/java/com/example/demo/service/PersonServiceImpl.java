@@ -9,9 +9,10 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Service
-
+@Transactional
 public class PersonServiceImpl implements PersonService {
 
     private final PersonRepository personRepository;
@@ -24,15 +25,13 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    @Transactional
-    public Person createPerson(Person person) {
-
-        for (PostalAddress address : person.getAddresses())
-            address.setPerson(person);
-        for (ContactMethod contactMethod : person.getContactMethods())
-            contactMethod.setPerson(person);
+    public Optional<Person> createPerson(Person person) {
+//        for (PostalAddress address : person.getAddresses())
+//            address.setPerson(person);
+//        for (ContactMethod contactMethod : person.getContactMethods())
+//            contactMethod.setPerson(person);
         personRepository.save(person);
-        return person;
+        return Optional.of(this.personRepository.save(person));
     }
 
     @Override
@@ -51,9 +50,55 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public List<Person> findByStreetAddress(String streetAddress) {
-        return personRepository.findByStreetAddress(streetAddress);
+    public List<Person> findByStreetAddress(String sAddress) {
+        return personRepository.findByStreetAddress(sAddress);
     }
 
+    @Override
+    public Optional<Person> getPersonDetails(Long id) {
+        return personRepository.findWithAddressandConctact(id);
+    }
 
+    @Override
+    public Optional<Person> addAddressToPerson(Long personId, PostalAddress postalAddress) {
+        if (personId == null || postalAddress == null)
+            return Optional.empty();
+
+        Person person = personRepository.findById(personId).orElse(null);
+
+
+        assert person != null;
+        person.getAddresses().add(postalAddress);
+        this.personRepository.save(person);
+
+        if (!isAddressUniqueForPerson(personId, postalAddress.getStreetAddress())) {
+            return Optional.empty();
+        }
+        return Optional.of(person);
+    }
+
+    private boolean isAddressUniqueForPerson(Long id, String address) {
+        return personRepository.countAddwithStreetAdd(id, address) == 0;
+    }
+
+    @Override
+    public Optional<Person> addContactMethodToPerson(Long personId, ContactMethod contactMethod) {
+        if (personId == null || contactMethod == null)
+            return Optional.empty();
+
+        Person person = personRepository.findById(personId).orElse(null);
+        if (person == null)
+            return Optional.empty();
+        if (!isContactMethodUnique(personId, contactMethod.getValue())) {
+            return Optional.empty(); // Contact method is not unique for the person
+        }
+        contactMethod.setPerson(person);
+        person.getContactMethods().add(contactMethod);
+
+        return Optional.of(person);
+    }
+    private boolean isContactMethodUnique(Long id, String contactMethod)
+    {
+        return personRepository.countContactMetod(id,contactMethod)==0;
+    }
 }
