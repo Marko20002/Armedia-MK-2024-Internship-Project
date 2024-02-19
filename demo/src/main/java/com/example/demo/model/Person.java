@@ -27,7 +27,10 @@ import java.util.List;
                         "p.addresses pa WHERE p.id= :id"),
         @NamedQuery(name = Person.PERSON_FIND_BY_ID_ADD_CONTACT,
                 query = "SELECT p FROM Person p LEFT JOIN " +
-                        "p.contactMethods c WHERE p.id= :id")
+                        "p.contactMethods c WHERE p.id= :id"),
+        @NamedQuery(name = Person.PERSON_FIND_BY_USER,
+                query = "select p from Person p join p.demoUser " +
+                        "u where u.userName= :userName")
 })
 @Entity
 @Table(name = "demo_person")
@@ -38,6 +41,7 @@ public class Person {
     public static final String PERSON_FIND_BY_STREET_ADDRESS = "Person.findByStreetAddress";
     public static final String PERSON_FIND_BY_ID_ADD_ADDRESS = "Person.findByIdAddAddress";
     public static final String PERSON_FIND_BY_ID_ADD_CONTACT = "Person.findByIdAddContact";
+    public static final String PERSON_FIND_BY_USER = "Person.findByUsername";
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "demo_person_id")
@@ -59,5 +63,8 @@ public class Person {
     @JoinColumn(name = "person_demo_person_id")
     @Valid
     private List<ContactMethod> contactMethods;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private DemoUser demoUser;
 
 }

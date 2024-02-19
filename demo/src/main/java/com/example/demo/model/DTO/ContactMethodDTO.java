@@ -1,6 +1,6 @@
 package com.example.demo.model.DTO;
 
-import com.example.demo.model.ContactMethodType;
+import com.example.demo.model.enumerations.ContactMethodType;
 
 import com.example.demo.model.ValidContactMethod;
 import lombok.Builder;

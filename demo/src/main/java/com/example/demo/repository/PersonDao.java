@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import java.util.List;
+import java.util.Optional;
 
 import static com.example.demo.model.Person.*;
 
@@ -27,9 +28,10 @@ public class PersonDao extends EntityDao<Person> {
         }
     }
 
-    public List<Person> findAll() {
-        Query namedQuery = entityManager.createNamedQuery(PERSON_FIND_ALL, List.class);
 
+
+    public List<Person> findAll() {
+        Query namedQuery = entityManager.createNamedQuery(PERSON_FIND_ALL, Person.class);
         return namedQuery.getResultList();
     }
 

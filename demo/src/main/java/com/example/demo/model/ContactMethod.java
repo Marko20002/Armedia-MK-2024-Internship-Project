@@ -1,14 +1,11 @@
 package com.example.demo.model;
 
+import com.example.demo.model.enumerations.ContactMethodType;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
-import java.lang.annotation.Target;
 
 @Setter
 @Getter

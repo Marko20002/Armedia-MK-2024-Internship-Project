@@ -1,5 +1,6 @@
 package com.example.demo.web;
 
+import com.example.demo.exception.NoPersonFoundException;
 import com.example.demo.exception.PersonAlreadyExistsException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -30,7 +31,7 @@ public class GlobalExceptionHandler {
         return errorResponse;
     }
 
-    @ExceptionHandler({PersonAlreadyExistsException.class, NoSuchElementException.class})
+    @ExceptionHandler({PersonAlreadyExistsException.class, NoSuchElementException.class, NoPersonFoundException.class})
     public ResponseEntity<Object> handleCustomException(Exception ex) {
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)

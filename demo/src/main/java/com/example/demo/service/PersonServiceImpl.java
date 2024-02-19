@@ -57,28 +57,18 @@ public class PersonServiceImpl implements PersonService {
     @Transactional
     public Optional<Optional<Person>> addAddressToPerson(Long id, PostalAddress postalAddress) {
         Person person = personDao.findById(id);
-        if (postalAddress != null && !checkIfAddressIsAlreadyAdded(person, postalAddress))
-            person.getAddresses().add(postalAddress);
 
+        person.getAddresses().add(postalAddress);
         return Optional.of(this.personDao.save(person));
     }
 
     @Override
     public Optional<Optional<Person>> addContactMethodToPerson(Long id, ContactMethod contactMethod) {
         Person person = personDao.findById(id);
-        if(contactMethod != null && !checkIfContactMethodIsAlreadyAdded(person,contactMethod))
             person.getContactMethods().add(contactMethod);
 
         return Optional.of(this.personDao.save(person));
     }
 
 
-    private boolean checkIfAddressIsAlreadyAdded(Person person, PostalAddress postalAddress) {
-        return person.getAddresses().stream().anyMatch(pa -> pa.getStreetAddress().equals(postalAddress
-                .getStreetAddress()));
-    }
-    private boolean checkIfContactMethodIsAlreadyAdded(Person person , ContactMethod contactMethod)
-    {
-        return person.getContactMethods().stream().anyMatch(cm -> cm.getValue().equals(contactMethod.getValue()));
-    }
 }
