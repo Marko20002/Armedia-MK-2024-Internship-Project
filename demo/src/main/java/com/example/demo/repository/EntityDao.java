@@ -1,5 +1,8 @@
 package com.example.demo.repository;
 
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.Optional;

@@ -1,6 +1,7 @@
 package com.example.demo.model;
 
 import com.example.demo.model.DTO.ContactMethodDTO;
+import com.example.demo.model.enumerations.ContactMethodType;
 import org.springframework.beans.factory.annotation.Value;
 
 import javax.validation.ConstraintValidator;

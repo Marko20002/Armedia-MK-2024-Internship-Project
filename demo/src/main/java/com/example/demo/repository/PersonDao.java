@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import java.util.List;
+import java.util.Optional;
 
 import static com.example.demo.model.Person.*;
 
@@ -26,10 +27,21 @@ public class PersonDao extends EntityDao<Person> {
             throw new NoPersonFoundException(String.format("person with %s not found", email));
         }
     }
+//    public Optional<Person> findByUsername(String username) {
+//        try {
+//            Query queryByUsername = entityManager.createNamedQuery(PERSON_FIND_BY_USER);
+//            queryByUsername.setParameter("userName", username);
+//            Person person = (Person) queryByUsername.getSingleResult();
+//            return Optional.of(person);
+//        } catch (NoResultException ex) {
+//            return Optional.empty();
+//        }
+//    }
+
+
 
     public List<Person> findAll() {
-        Query namedQuery = entityManager.createNamedQuery(PERSON_FIND_ALL, List.class);
-
+        Query namedQuery = entityManager.createNamedQuery(PERSON_FIND_ALL, Person.class);
         return namedQuery.getResultList();
     }
 

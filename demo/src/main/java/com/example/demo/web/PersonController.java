@@ -1,33 +1,49 @@
 package com.example.demo.web;
 
 
+import com.example.demo.exception.NoPersonFoundException;
 import com.example.demo.exception.PersonAlreadyExistsException;
-import com.example.demo.model.ContactMethod;
+import com.example.demo.model.*;
 import com.example.demo.model.DTO.PersonDTO;
-import com.example.demo.model.Person;
-import com.example.demo.model.PostalAddress;
+import com.example.demo.model.DTO.UserDTO;
 import com.example.demo.service.PersonService;
+import com.example.demo.service.UserDetailsServise;
+import com.example.demo.util.JwtUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+
 import org.springframework.web.bind.annotation.*;
 
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
 
 @RestController
 @RequestMapping("/person")
 public class PersonController {
-
+    @Autowired
     private final PersonService personService;
+    @Autowired
+    private final UserDetailsServise userDetailsServise;
+    @Autowired
+    private AuthenticationManager authenticationManager;
+    @Autowired
+    private final JwtUtil jwtTokenUtil;
 
-    public PersonController(PersonService personService) {
+    public PersonController(PersonService personService, UserDetailsServise userDetailsServise, AuthenticationManager authenticationManager, JwtUtil jwtTokenUtil) {
         this.personService = personService;
+        this.userDetailsServise = userDetailsServise;
+        this.authenticationManager = authenticationManager;
+        this.jwtTokenUtil = jwtTokenUtil;
     }
+
     @PostMapping("/create")
     public ResponseEntity<Object> createPerson(@RequestBody @Valid PersonDTO personDTO) {
         try {
@@ -37,7 +53,22 @@ public class PersonController {
             throw new PersonAlreadyExistsException("this already exist");
         }
     }
+    @PostMapping("/register")
+    public ResponseEntity<?> registerUser(@RequestBody UserDTO user) throws Exception {
 
+        try{
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(user.getUserName(),user.getPassword()));
+        }catch (BadCredentialsException ex){
+
+            throw new Exception("Incorect username or passwored", ex);
+        }
+
+        final MyUserDetails myUserDetails = userDetailsServise.loadUserByUsername(user.getUserName());
+        final String jwt = jwtTokenUtil.generateToken(myUserDetails);
+        return ResponseEntity.ok(new AuthenticationResponse(jwt));
+
+    }
 
     @GetMapping("/listAll")
     public ResponseEntity<List<Person>> getAllPersons() {
@@ -49,7 +80,7 @@ public class PersonController {
     public ResponseEntity<Person> getPersonById(@PathVariable Long id) {
         Optional<Person> person = personService.getbyId(id);
         if (!person.isPresent())
-            throw new NoSuchElementException();
+            throw new NoPersonFoundException("No Person Found");
         return ResponseEntity.of(person);
 
     }
@@ -62,7 +93,9 @@ public class PersonController {
 
 
     }
-
+    @GetMapping("/car")
+    public String marko()
+    {return ("<h1>Welcome to Our Website!</h1>"); }
     @GetMapping("/streetAdd")
     public ResponseEntity<?> getByStreetAddress(@RequestParam String streetAddress) {
         List<Person> personList = this.personService.findByStreetAddress(streetAddress);

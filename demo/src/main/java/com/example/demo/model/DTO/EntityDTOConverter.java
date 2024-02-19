@@ -1,10 +1,7 @@
 package com.example.demo.model.DTO;
 
-import com.example.demo.model.ContactMethod;
-import com.example.demo.model.Person;
-import com.example.demo.model.PostalAddress;
+import com.example.demo.model.*;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -20,7 +17,7 @@ public class EntityDTOConverter {
 
         person.setContactMethods(convertToContactMethodEntities(personDTO.getContactMethods()));
         person.setAddresses(convertToPostalAddressEntities(personDTO.getAddresses()));
-
+        person.setDemoUser(convertToUserEntity(personDTO.getUser()));
         return person;
     }
 
@@ -31,7 +28,9 @@ public class EntityDTOConverter {
                 .dateOfBirth(person.getDateOfBirth())
                 .placeOfBirth(person.getPlaceOfBirth())
                 .contactMethods(convertToContactMethodDTOList(person.getContactMethods()))
-                .addresses(convertToPostalAddressDTOList(person.getAddresses())).build();
+                .addresses(convertToPostalAddressDTOList(person.getAddresses()))
+                .user(convertToUserDTO(person.getDemoUser()))
+                .build();
     }
 
     public static List<PersonDTO> convertToPersonDTOList(List<Person> persons) {
@@ -39,7 +38,15 @@ public class EntityDTOConverter {
                 .map(EntityDTOConverter::convertToPersonDTO)
                 .collect(Collectors.toList());
     }
-
+    public static DemoUser convertToUserEntity(UserDTO userDTO)
+    {
+        DemoUser demoUser = new DemoUser();
+        demoUser.setUserName(userDTO.getUserName());
+        demoUser.setPassword(userDTO.getPassword());
+        demoUser.setActive(userDTO.isActive());
+        demoUser.setRole(userDTO.getRole());
+        return demoUser;
+    }
     public static PostalAddress convertToPostalAddressEntity(PostalAddressDTO postalAddressDTO) {
         PostalAddress postalAddress = new PostalAddress();
         postalAddress.setStreetAddress(postalAddressDTO.getStreetAddress());
@@ -58,22 +65,14 @@ public class EntityDTOConverter {
     }
 
     private static List<ContactMethod> convertToContactMethodEntities(List<ContactMethodDTO> contactMethodDTOList) {
-        if (contactMethodDTOList == null) {
-            return Collections.emptyList();
-        }
-
         return contactMethodDTOList.stream()
                 .filter(Objects::nonNull)
                 .map(EntityDTOConverter::convertToContactMethodEntity)
-                .filter(obj -> true)
                 .collect(Collectors.toList());
     }
 
 
     private static List<PostalAddress> convertToPostalAddressEntities(List<PostalAddressDTO> postalAddressDTOList) {
-        if (postalAddressDTOList == null) {
-            return Collections.emptyList();
-        }
         return postalAddressDTOList.stream()
                 .map(EntityDTOConverter::convertToPostalAddressEntity)
                 .collect(Collectors.toList());
@@ -90,7 +89,14 @@ public class EntityDTOConverter {
                 .map(EntityDTOConverter::convertToPostalAddressDTO)
                 .collect(Collectors.toList());
     }
-
+    private static UserDTO convertToUserDTO(DemoUser demoUser)
+    {
+        return UserDTO.builder()
+                .role((demoUser.getRole()))
+                .active(demoUser.isActive())
+                .userName(demoUser.getUserName())
+                .password(demoUser.getPassword()).build();
+    }
     private static ContactMethodDTO convertToContactMethodDTO(ContactMethod contactMethod) {
         return ContactMethodDTO.builder()
                 .type(contactMethod.getType())
@@ -105,5 +111,16 @@ public class EntityDTOConverter {
                 .city(postalAddress.getCity())
                 .zip(postalAddress.getZip())
                 .country(postalAddress.getCountry()).build();
+    }
+
+    public static CaseFile convertToCaseFileEntity(CaseFileDTO caseFileDTO) {
+        if (caseFileDTO == null) {
+            return null;
+        }
+        CaseFile caseFile = new CaseFile();
+        caseFile.setCaseNumber(Integer.valueOf(caseFileDTO.getCaseNumber()));
+        caseFile.setTitle(caseFileDTO.getTitle());
+        caseFile.setIncidentDate(caseFileDTO.getIncidentDate());
+        return caseFile;
     }
 }
