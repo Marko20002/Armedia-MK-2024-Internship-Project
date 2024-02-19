@@ -27,16 +27,6 @@ public class PersonDao extends EntityDao<Person> {
             throw new NoPersonFoundException(String.format("person with %s not found", email));
         }
     }
-//    public Optional<Person> findByUsername(String username) {
-//        try {
-//            Query queryByUsername = entityManager.createNamedQuery(PERSON_FIND_BY_USER);
-//            queryByUsername.setParameter("userName", username);
-//            Person person = (Person) queryByUsername.getSingleResult();
-//            return Optional.of(person);
-//        } catch (NoResultException ex) {
-//            return Optional.empty();
-//        }
-//    }
 
 
 

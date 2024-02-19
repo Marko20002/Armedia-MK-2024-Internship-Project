@@ -6,6 +6,7 @@ import com.example.demo.model.DTO.CaseFileDTO;
 import com.example.demo.repository.CaseFileDao;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.NoResultException;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
@@ -34,7 +35,7 @@ public class CaseFileServiceImpl implements CaseFileService {
     public CaseFile getCaseFileById(Long caseFileId) {
         try {
             return this.caseFileDao.getCaseFileById(caseFileId);
-        } catch (RuntimeException ex) {
+        } catch (NoResultException ex) {
             throw new NoPersonFoundException(String.format("Case file with id: %d was not found.", caseFileId));
         }
     }
@@ -44,7 +45,7 @@ public class CaseFileServiceImpl implements CaseFileService {
     public Optional<CaseFile> updateFile(Long id, CaseFileDTO caseFileDTO) {
         try {
             return this.caseFileDao.update(id, caseFileDTO);
-        } catch (RuntimeException ex) {
+        } catch (NoResultException ex) {
             throw new NoPersonFoundException(String.format("Case file with id: %d was not found.", id));
         }
     }
