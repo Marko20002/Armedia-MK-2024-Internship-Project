@@ -63,6 +63,7 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
+    @Transactional
     public Optional<Optional<Person>> addContactMethodToPerson(Long id, ContactMethod contactMethod) {
         Person person = personDao.findById(id);
             person.getContactMethods().add(contactMethod);

@@ -2,6 +2,7 @@ package com.example.demo.model.DTO;
 
 import com.example.demo.model.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -40,6 +41,7 @@ public class EntityDTOConverter {
     }
     public static DemoUser convertToUserEntity(UserDTO userDTO)
     {
+        if (userDTO == null) return null;
         DemoUser demoUser = new DemoUser();
         demoUser.setUserName(userDTO.getUserName());
         demoUser.setPassword(userDTO.getPassword());
@@ -65,26 +67,29 @@ public class EntityDTOConverter {
     }
 
     private static List<ContactMethod> convertToContactMethodEntities(List<ContactMethodDTO> contactMethodDTOList) {
+        if (contactMethodDTOList == null) return new ArrayList<>();
         return contactMethodDTOList.stream()
                 .filter(Objects::nonNull)
                 .map(EntityDTOConverter::convertToContactMethodEntity)
                 .collect(Collectors.toList());
     }
 
-
     private static List<PostalAddress> convertToPostalAddressEntities(List<PostalAddressDTO> postalAddressDTOList) {
+        if (postalAddressDTOList == null) return new ArrayList<>();
         return postalAddressDTOList.stream()
                 .map(EntityDTOConverter::convertToPostalAddressEntity)
                 .collect(Collectors.toList());
     }
 
     private static List<ContactMethodDTO> convertToContactMethodDTOList(List<ContactMethod> contactMethods) {
+        if (contactMethods == null) return new ArrayList<>();
         return contactMethods.stream()
                 .map(EntityDTOConverter::convertToContactMethodDTO)
                 .collect(Collectors.toList());
     }
 
     private static List<PostalAddressDTO> convertToPostalAddressDTOList(List<PostalAddress> addresses) {
+        if (addresses == null) return new ArrayList<>();
         return addresses.stream()
                 .map(EntityDTOConverter::convertToPostalAddressDTO)
                 .collect(Collectors.toList());
