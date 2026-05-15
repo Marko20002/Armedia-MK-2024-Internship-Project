@@ -1,0 +1,339 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 14px;
+  color: #1a1a2e;
+  background: #f4f6fa;
+}
+
+/* ── Auth page ── */
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #1a1a2e;
+}
+
+.auth-form {
+  background: #fff;
+  padding: 2.5rem 2rem;
+  border-radius: 10px;
+  width: 340px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  box-shadow: 0 4px 24px rgba(0,0,0,.25);
+}
+
+.auth-form h1 {
+  font-size: 1.5rem;
+  text-align: center;
+  color: #1a1a2e;
+}
+
+.auth-form label {
+  display: flex;
+  flex-direction: column;
+  gap: .3rem;
+  font-weight: 600;
+  font-size: .85rem;
+  color: #444;
+}
+
+.auth-form input {
+  padding: .55rem .75rem;
+  border: 1px solid #cdd0d9;
+  border-radius: 6px;
+  font-size: .95rem;
+  outline: none;
+  transition: border-color .15s;
+}
+
+.auth-form input:focus { border-color: #4f6ef7; }
+
+/* ── Layout ── */
+.layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 200px;
+  background: #1a1a2e;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem 1rem;
+  gap: .4rem;
+  flex-shrink: 0;
+}
+
+.sidebar-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
+  padding: 0 .5rem .75rem;
+  border-bottom: 1px solid rgba(255,255,255,.12);
+  margin-bottom: .4rem;
+}
+
+.sidebar a {
+  display: block;
+  padding: .55rem .75rem;
+  color: rgba(255,255,255,.7);
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: background .15s, color .15s;
+}
+
+.sidebar a:hover,
+.sidebar a.active {
+  background: rgba(79,110,247,.25);
+  color: #fff;
+}
+
+.logout-btn {
+  margin-top: auto;
+  background: none;
+  border: 1px solid rgba(255,255,255,.2);
+  color: rgba(255,255,255,.6);
+  padding: .5rem .75rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: .85rem;
+  text-align: left;
+  transition: border-color .15s, color .15s;
+}
+
+.logout-btn:hover {
+  border-color: #e74c3c;
+  color: #e74c3c;
+}
+
+.content {
+  flex: 1;
+  padding: 2rem 2.5rem;
+  overflow-y: auto;
+}
+
+/* ── Page header ── */
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+}
+
+.page-header h2 { font-size: 1.4rem; }
+
+/* ── Buttons ── */
+.btn-primary {
+  background: #4f6ef7;
+  color: #fff;
+  border: none;
+  padding: .5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: .875rem;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-block;
+  transition: background .15s;
+}
+
+.btn-primary:hover { background: #3b58e0; }
+
+button { cursor: pointer; }
+
+/* ── Tables ── */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 6px rgba(0,0,0,.07);
+}
+
+.data-table th {
+  background: #f0f2f9;
+  text-align: left;
+  padding: .65rem 1rem;
+  font-size: .8rem;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: #666;
+}
+
+.data-table td {
+  padding: .7rem 1rem;
+  border-top: 1px solid #eef0f6;
+}
+
+.data-table tr:hover td { background: #f8f9ff; }
+
+.data-table a {
+  color: #4f6ef7;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* ── Detail view ── */
+.detail-card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 1px 6px rgba(0,0,0,.07);
+  margin-bottom: 1.5rem;
+}
+
+dl.detail-list {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: .5rem .75rem;
+}
+
+dl.detail-list dt {
+  font-weight: 600;
+  color: #888;
+  font-size: .85rem;
+}
+
+dl.detail-list dd { color: #1a1a2e; }
+
+.back-link {
+  display: inline-block;
+  color: #4f6ef7;
+  text-decoration: none;
+  margin-bottom: 1rem;
+  font-size: .875rem;
+}
+
+.back-link:hover { text-decoration: underline; }
+
+h2 { margin-bottom: 1rem; }
+h3 { font-size: 1rem; color: #555; margin: 0; }
+
+/* ── Section header (title + action button on same row) ── */
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1.4rem 0 .6rem;
+}
+
+/* ── Small outline button ── */
+.btn-sm {
+  background: none;
+  border: 1px solid #4f6ef7;
+  color: #4f6ef7;
+  padding: .28rem .75rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: .8rem;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: background .15s, color .15s;
+}
+.btn-sm:hover { background: #4f6ef7; color: #fff; }
+
+/* ── Inline form panel ── */
+.inline-form {
+  background: #fff;
+  border: 1px solid #e0e3f0;
+  border-radius: 8px;
+  padding: 1.25rem;
+  margin-bottom: .75rem;
+}
+
+/* ── Two-column form row ── */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+ul { padding-left: 1.25rem; }
+ul li { margin-bottom: .3rem; }
+
+/* ── Forms ── */
+.form-card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 1.75rem;
+  box-shadow: 0 1px 6px rgba(0,0,0,.07);
+  max-width: 540px;
+}
+
+.form-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-grid label {
+  display: flex;
+  flex-direction: column;
+  gap: .3rem;
+  font-weight: 600;
+  font-size: .85rem;
+  color: #444;
+}
+
+.form-grid input,
+.form-grid select {
+  padding: .55rem .75rem;
+  border: 1px solid #cdd0d9;
+  border-radius: 6px;
+  font-size: .95rem;
+  outline: none;
+  transition: border-color .15s;
+}
+
+.form-grid input:focus,
+.form-grid select:focus { border-color: #4f6ef7; }
+
+.form-actions {
+  display: flex;
+  gap: .75rem;
+  margin-top: .5rem;
+}
+
+.form-actions button:not(.btn-primary) {
+  background: none;
+  border: 1px solid #cdd0d9;
+  padding: .5rem 1rem;
+  border-radius: 6px;
+  font-size: .875rem;
+  transition: border-color .15s;
+}
+
+.form-actions button:not(.btn-primary):hover { border-color: #999; }
+
+/* ── Misc ── */
+.error {
+  background: #fff0f0;
+  border: 1px solid #f5c6cb;
+  color: #c0392b;
+  padding: .5rem .75rem;
+  border-radius: 6px;
+  font-size: .875rem;
+}
+
+.empty-state {
+  color: #aaa;
+  font-style: italic;
+  margin-top: .5rem;
+}
+
+.badge {
+  display: inline-block;
+  padding: .15rem .5rem;
+  border-radius: 4px;
+  font-size: .75rem;
+  font-weight: 700;
+  background: #e8edff;
+  color: #4f6ef7;
+}

@@ -65,6 +65,7 @@ public class Person {
     private List<ContactMethod> contactMethods;
 
     @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "demo_user_id", unique = false)
     private DemoUser demoUser;
 
 }
